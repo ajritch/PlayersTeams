@@ -1,5 +1,5 @@
 //teams controller
-app.controller('TeamsController', function($scope, teamFactory) {
+app.controller('TeamsController', function($scope, $routeParams, teamFactory) {
 	$scope.teams = [];
 	$scope.newTeam = {};
 
@@ -20,6 +20,20 @@ app.controller('TeamsController', function($scope, teamFactory) {
 	//remove a team
 	$scope.remove = function(team) {
 		teamFactory.remove(team, setTeams);
+	}
+
+	//get players in team (if team route parameters passed)
+	if ($routeParams.teamname) {
+		// console.log('there should be players')
+		teamFactory.getTeamPlayers({name: $routeParams.teamname}, function(data) {
+			// console.log(data);
+			$scope.teamPlayers = data;
+			$scope.teamName = $routeParams.teamname;
+			// console.log($scope.teamPlayers);
+		});
+	} else {
+		$scope.teamName = $routeParams.teamname;
+		$scope.teamPlayers = [];
 	}
 
 });

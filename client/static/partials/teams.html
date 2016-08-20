@@ -17,7 +17,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat = 'team in teams | orderBy:sortType:sortReverse track by $index'>
-				<td>{{team.name}}</td>
+				<td><a href = "#/{{team.name}}" ng-bind = "team.name"></a></td>
 				<td><button ng-click = 'remove(team)'>Remove Team</button></td>
 			</tr>
 		</tbody>

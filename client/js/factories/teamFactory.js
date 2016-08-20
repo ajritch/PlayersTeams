@@ -6,7 +6,7 @@ app.factory('teamFactory', function() {
 		{name: 'Wombats'}
 	];
 	var associations = [
-		{player: {name: 'Annie Ritch'}, team: {name: 'SeaSlugs'}}
+		{player: {name: 'Annie Ritch'}, team: {name: 'Sea Slugs'}}
 	];
 	var factory = {};
 
@@ -44,6 +44,17 @@ app.factory('teamFactory', function() {
 	factory.removeAssociation = function(association, callback) {
 		associations.splice(associations.indexOf(association), 1);
 		callback(associations);
+	}
+
+	//get all players in a specific team
+	factory.getTeamPlayers = function(team, callback) {
+		var players = [];
+		for (var i in associations) {
+			if (associations[i].team.name == team.name) {
+				players.push(associations[i].player);
+			}
+		}
+		callback(players);
 	}
 
 	return factory;

@@ -23,7 +23,7 @@
 		<tbody>
 			<tr ng-repeat = 'association in associations | orderBy:sortType:sortReverse track by $index'>
 				<td ng-bind = "association.player.name"></td>
-				<td>{{association.team.name}}</td>
+				<td><a href = "#/{{association.team.name}}" ng-bind = "association.team.name"></a></td>
 				<td><button ng-click = 'remove(association)'>Clear Assignment</button></td>
 			</tr>
 		</tbody>
